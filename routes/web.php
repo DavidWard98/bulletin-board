@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+// use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,19 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/bulletin-board', function(){
-    return Inertia::render('BulletinBoard');
-})->middleware(['auth', 'verified'])->name('bulletin-board');
+Route::middleware(['auth', 'verified'])->prefix('/bulletin-board')->group(function(){
+    Route::get('/', function(){
+        return Inertia::render('BulletinBoard');
+    })->name('bulletin-board');
+});
+
+// Route::get('/bulletin-board', function(){
+//     return Inertia::render('BulletinBoard');
+// })->middleware(['auth', 'verified'])->name('bulletin-board');
+
+// Route::prefix('posts')->group(function(){
+//     Route::get('/', [PostController::class, 'index']);
+// });
+
 
 require __DIR__.'/auth.php';
