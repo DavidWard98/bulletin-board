@@ -33,10 +33,12 @@ Route::middleware(['auth', 'verified'])->prefix('bulletin-board')->name('bulleti
     Route::get('/', function(){
         return Inertia::render('BulletinBoard');
     });
-
-    Route::prefix('posts')->name('posts')->group(function(){
-        Route::resource('/', PostsController::class);
-    });
 });
+
+Route::get('posts/create', function(){
+    return Inertia::render('Posts/Create');
+});
+
+Route::post('posts', [PostsController::class, 'store']);
 
 require __DIR__.'/auth.php';
