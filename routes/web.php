@@ -35,10 +35,7 @@ Route::middleware(['auth', 'verified'])->prefix('bulletin-board')->name('bulleti
     });
 });
 
-Route::get('posts/create', function(){
-    return Inertia::render('Posts/Create');
-});
-
+Route::get('posts/create', [PostsController::class, 'create'] );
 Route::post('posts', [PostsController::class, 'store']);
 
 require __DIR__.'/auth.php';
