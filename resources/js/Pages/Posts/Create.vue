@@ -11,9 +11,9 @@
     <div>
       <form @submit.prevent="submit" method="POST" action="/">
         <breeze-label value="Title" for="title" />
-        <breeze-input :modelValue="form.title" type="text" for="title" />
+        <breeze-input  v-model="form.title" type="text" for="title" />
 
-        <breeze-input :modelValue="form.content" type="text" for="content" />
+        <breeze-input v-model="form.content" type="text" for="content" />
         <breeze-button type="submit" :disabled="form.processing">
           Create
         </breeze-button>
